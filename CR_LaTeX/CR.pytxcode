@@ -1,0 +1,31 @@
+=>PYTHONTEX#py#default#default#0#code#####13#
+import numpy as np
+from math import *
+np.random.seed(12345)
+def myf(x,y)
+	return x*y/x-y
+=>PYTHONTEX:SETTINGS#
+version=0.17
+outputdir=pythontex-files-CR
+workingdir=.
+workingdirset=false
+gobble=none
+rerun=default
+hashdependencies=default
+makestderr=false
+stderrfilename=full
+keeptemps=none
+pyfuture=default
+pyconfuture=none
+pygments=true
+pygglobal=:GLOBAL||
+fvextfile=-1
+pyconbanner=none
+pyconfilename=stdin
+depythontex=false
+pygfamily=py|python3|
+pygfamily=pycon|pycon|
+pygfamily=sympy|python3|
+pygfamily=sympycon|pycon|
+pygfamily=pylab|python3|
+pygfamily=pylabcon|pycon|

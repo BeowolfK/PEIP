@@ -1,0 +1,353 @@
+\documentclass[a4paper, 12pt]{report}
+\usepackage[latin1]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{titlesec}
+\usepackage{fix-cm}
+\usepackage{xcolor}
+\usepackage[margin=2cm]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\newcommand{\poubelle}[1]{}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{28pt}
+\lhead{\textsc{Sollier Baptiste, Montial Liam, \\ Gagliano Adrien, Meylan Kénan}}
+\rhead{Projet Ingénierie sur la récursivité informatique}
+\rfoot{Page \thepage}
+\renewcommand{\footrulewidth}{1pt}
+\renewcommand{\headrulewidth}{1pt}
+\parindent=0px
+\usepackage{pdfpages}
+
+
+\begin{document}
+
+\author{Sollier Baptiste, Montial Liam, Gagliano Adrien, Meylan Kénan}
+\title{\textsc{Projet d'ingénierie PEIP \\ Récursivité informatique}}
+\date{PEIP 1 - Année 2020 - 2021}
+\maketitle
+\titleformat{\section}[display]{\normalfont\bfseries}{}{0pt}{\Huge}
+\section{Qu'est ce que la \\ généricité informatique?}
+\paragraph{Quelles sont les applications de la récursivité?}
+\subsection*{Différents exemple de construction récursive}
+\subsubsection*{Qu'est ce que la récursivité ?}
+Avant même de s'intéresser aux construction récursive, intéressons nous tout d'abord a qu'est ce que la récursivité. D'après le CNRTL (Centre National de Ressources Textuelles et Lexicales), un processus récursif est un processus qui s'appelle ou se met en jeu répétitivement et automatiquement.
+\subsubsection*{Des exemples de construction récursive}
+La récursivité est présente dans tous les domaines, que ce soit dans l'art par exemple, avec la mise en abime que nous pouvons voir dans la publicité par exemple, comme dans le logo de la Vache Qui Rit. 
+\begin{center}
+\includegraphics[scale=1]{vachequirit.png}
+\end{center}
+On peut bien voir que la vache est représenté aussi dans ses boucles d'oreilles qui, sur celle ci, a aussi des boucles d'oreilles sur laquelle est représenté la vaches, avec d'autre boucles d'oreilles et ainsi de suite. \\
+La récursivité est aussi très présente dans le domaines de la biologie comme dans les fleurs de tournesol ou les choux romanesco :
+\begin{center}
+\includegraphics[scale=0.2]{tournesol.jpg}
+\includegraphics[scale=0.15]{romanesco.jpg}
+\end{center}
+On voit bien sur le chou romanesco par exemple, que sur chaque spirale, il y a d'autres spirales, elle même constitué de spirale et ainsi de suite.
+\newpage
+Dans le domaine des mathématiques, l'exemple le plus connu de tous est évidemment la suite de Fibonacci qui est défini par : 
+$F_0 = 0$, $F_1 = 1$, $F_n = F_{n-1} + F_{n-2}$.
+Ainsi, chaque nombre supérieur a 1 est défini par récursivité grâce au nombre précédent et au nombre précédent celui qui précède.
+Un autre exemple extrêmement connu de la récursivité, est les fractales. Voici le triangle de Sierpinski : 
+\begin{center}
+\includegraphics[scale=0.7]{Sierpinski.png}
+\end{center}
+Ce triangle est généré en prenant un triangle plein initial, diviser sa taille par deux, l'accoler à deux autre triangle identique sommet a sommet pour former un autre triangle. Ainsi, chaque triangle, hormis le premier, est défini en fonction du précédent. \\
+Intéressons nous maintenant au domaine qui nous intéresse, c'est a dire celui de l'informatique.
+\subsection*{La récursivité dans l'informatique }
+\subsubsection*{Le cas de base en récursivité}
+En récursivité, le cas de base sert a la sortie du programme, sans celle ci, le programme continuerais à l'infini, comme nous allons le voir dans l'exemple suivant, on retourne la valeur finale si n = 2. Pour illustrer nos propos, il suffit de regarder l'exemple de la factorielle. Pour des soucis de compréhension, une partie en python et en pseudo-code sera rédigé. 
+\subsubsection*{La factorielle par récursivité}
+\begin{lstlisting}[language=Python, title=Calcul de factorielle de façon récursive, frame=bt]
+def factorielle(nb):
+    if nb > 2:
+        return nb * factorielle(nb - 1)
+    return nb
+"""
+Fonction factorielle(nb)
+	Si n > 2:
+		Retourner nb * factorielle(nb - 1)
+	Fin Si
+	Retourner nb
+Fin Fonction
+"""
+\end{lstlisting}
+
+Nous savons que 0! = 1, que 1! = 1 et que 2! = 2 donc, comme cas de base, nous avons : si le chiffre est inférieur à 2, nous retournons le nombre. Sinon, si le nombre est supérieur a 2, nous calculons ce nombre multiplié par la factorielle du nombre -1. En effet, la factorielle de n peut être défini de la façon suivant: $n!=n*(n-1)!$. Ainsi, pour calculer $(n-1)!$ cela revient à calculer $(n-1)!=(n-1)*(n-2)!$ et ainsi de suite.
+
+\newpage
+
+Nous pouvons visualiser l'exécution, pour une valeur de 5 par exemple : 
+\begin{center}
+\includegraphics[scale=0.5]{fact1.png}
+\end{center}
+On appelle la fonction jusqu'à ce que nb soit inférieur ou égale à 2. A 2, on retourne donc 2. \\On peut donc désormais calculer chaque retour de fonction lors desquelles on demandais au programme de retourner $nb * factorielle(nb - 1)$.
+\begin{center}
+\includegraphics[scale=0.5]{fact2.png}
+\end{center}
+\begin{center}
+\includegraphics[scale=0.5]{fact3.png}
+\end{center}
+\begin{center}
+\includegraphics[scale=0.5]{fact4.png}
+\end{center}
+
+\newpage
+\subsubsection*{La Tour de Hanoï}
+\begin{lstlisting}[language=Python, title=Calcul de factorielle de façon récursive, frame=bt]
+def hanoi(n,a=1,b=2,c=3):
+    if (n > 0):
+        hanoi(n-1,a,c,b)
+        Afficher Déplace valeur de a sur valeur de c
+        hanoi(n-1,b,a,c)
+    Fin Si
+Fin Fonction
+"""
+Fonction hanoi(n, a = 1, b = 2, c = 3)
+    Si n > 0:
+        hanoi(n-1,a,c,b)
+        print "Déplace ",a,"sur",c
+        hanoi(n-1,b,a,c)
+    Fin si
+Fin fonction
+"""
+\end{lstlisting}Comme dit dans l'énoncé, en informatique et en mathématiques,  une fonction récursive est une fonction qui se définit en fonction d'elle même. Son analogue plus connu et plus utilisé est l'itératif, celui ci ne s'appelle pas lui même mais est constitué de boucles. Voyons donc ce parallèle :
+
+\subsection*{Le parallèle itératif/récursif}
+\subsubsection*{Qu'est ce qu'une itération?}
+En programmation, un programme itératif est un programme qui utilise une boucle (boucle $for$ le plus souvent). Une itération est une répétition, un tour de cette boucle. A chaque tour de boucle, on dit qu'il y a une nouvelle itération. 
+\subsubsection*{La factorielle de façon itérative}
+\begin{lstlisting}[language=Python, frame=bt, title=Calcul de factorielle de façon itérative]
+def factorial1(n):
+	r = 1
+	for i in range(1,n+1):
+		r = r * i
+	return r
+print(factorial(5))
+
+"""
+Fonction factorial1(n)
+	r = 1
+	Pour i de 1 jusqu'à n avec un pas de 1
+		r = r * i
+	Fin Pour
+	Retourner r
+Fin Fonction
+Afficher factorial de 5
+"""
+\end{lstlisting}
+\subsubsection*{Les avantages et inconvénient }
+On peut donc voir que la récursivité est donc plus courte en longueur de code. Elle est aussi un gain de temps dans la plupart des cas comme dans les algorithmes de tri. \\Un algorithme de tri est aussi beaucoup plus rapide de façon récursive que de façon itérative, évidemment sur ce type d'algorithme (sur d'autres algorithme l'itérativité serait plus rapide, mais pour généraliser, cela récursivité est très souvent un gain de temps). Avec deux algorithmes de tri, par exemples le tri par sélection et le tri rapide (en toute logique le tri rapide est le tri effectué par récursivité).
+
+\begin{center}
+\includegraphics[scale=1]{selectionsort.png}
+\includegraphics[scale=1.015]{rapidsort.png}
+\end{center}
+
+On peut donc voir que le code est extrêmement plus rapide par récursivité que par itérativité (soit environ un facteur de 2700 fois plus rapide par récursivité que par itérativité)
+Nous allons voir dans la prochaine partie, d'autres algorithme utilisant la récursivité.
+\newpage
+\subsection*{Un exemple d'application de la récursivité}
+\subsubsection*{Qu'est ce que le backtracking?}
+Le backtracking, ou retour sur trace, ou encore retour arrière, est un type d'algorithme en testant récursivement l'ensemble des affectations possibles à une variable. Ce type d'algorithme consiste à sélectionner une variable du problème et pour chaque valeur valable de cette variable, tester récursivement si la solution est valide ou pas. Si aucune solution valide n'est trouvé, alors le programme abandonne la dernière valeur et revient sur les affectations de la variables faite précédemment.
+
+\begin{center}
+\includegraphics[width=\textwidth]{bactracking.jpg}
+\textbf{Schéma de l'arbre de décision typique d'un algorithme de backtracking}
+\end{center}
+Il existe de nombreux modèles d'applications de la méthode de backtracking, comme par exemple, l'exemple le plus connu, Deep Blue, un super ordinateur de jeux d'échec. Il est surtout connu pour avoir battu le champion du monde d'échecs de l'époque, soit Garry Kasparov, en 1997. Le principe de résolution d'une partie d'échec est typiquement le même que le parcours de l'arbre des variables possible des partie d'échecs, a une différence près, c'est que le nombre de partie d'échec est bien supérieur à $10^{6000}$ en tenant compte de la règle des cinquante coups (il y aurait certes des parties déraisonnables (certaines parties pouvant durer près de 6000 coups)), et si l'on prend en compte seulement les parties raisonnables, on atteindrait $10^{123}$ combinaisons de parties d'échec différent. Alors certes l'ordinateur ne les calculera pas tous, mais ce chiffres est a titre informatif pour la suite.
+\newpage
+\subsubsection*{Le Sudoku, un exemple d'application du backtracking}
+\begin{lstlisting}[language=python, frame=bt, title= Algorithme utilisant le backtracking pour la résolution de Sudoku]
+grid = [[5,3,0,0,7,0,0,0,0],
+        [6,0,0,1,9,5,0,0,0],
+        [0,9,8,0,0,0,0,6,0],
+        [8,0,0,0,6,0,0,0,3],
+        [4,0,0,8,0,3,0,0,1],
+        [7,0,0,0,2,0,0,0,6],
+        [0,6,0,0,0,0,2,8,0],
+        [0,0,0,0,1,9,0,0,5],
+        [0,0,0,0,0,0,0,0,0]]
+
+print("+---SUDOKU NON RESOLU---+")
+for k in range(len(grid)):
+    line = "? "
+    for l in range(len(grid[k])):
+        if l % 3 == 0 and l != 0 :
+            line += '? ' + f'{ grid[k][l]} '
+        elif l == 8 :
+            line += f'{ grid[k][l]} ' + '?'
+        else :
+            line += f'{ grid[k][l]} '
+    if k % 3 == 0: 
+        print("¦"+"-------+"*2+"-------"+"¦")
+    print(line)
+print("+"+"--------"*2+"-------"+"+")
+    
+def possible(row, column, number, grid):
+    #Le nombre apparait-il dans la ligne ?
+    for i in range(0,9):
+        if grid[row][i] == number:
+            return False
+
+    #Le nombre apparait-il dans la colonne ?
+    for i in range(0,9):
+        if grid[i][column] == number:
+            return False
+    
+    #Le nombre apparait-il dans le carré de 3*3 ?
+    x0 = (column // 3) * 3
+    y0 = (row // 3) * 3
+    for i in range(0,3):
+        for j in range(0,3):
+            if grid[y0+i][x0+j] == number:
+                return False
+
+    return True
+
+def solve(grid):
+    for row in range(0,9):
+        for column in range(0,9):
+            if grid[row][column] == 0:
+                for number in range(1,10):
+                    if possible(row, column, number, grid):
+                        grid[row][column] = number
+                        solve(grid)
+                grid[row][column] = 0
+                return grid
+    print("??????SUDOKU RESOLU??????")
+    for k in range(len(grid)):
+        line = '? '
+        for l in range(len(grid[k])):
+            if l % 3 == 0 and l != 0 :
+                line += '? ' + f'{ grid[k][l]} '
+            elif l == 8 :
+                line += f'{ grid[k][l]} ' + '?'
+            else :
+                line += f'{ grid[k][l]} '
+        if k % 3 == 0: 
+            print("?"+"????????"*2+"???????"+"?")
+        print(line)
+    print("?"+"????????"*2+"???????"+"?")
+    exit()
+
+solve(grid)
+
+\end{lstlisting}
+\begin{tiny}
+A cause d'un problème d'encodage en \LaTeX, certains caractères ne ressortent pas correctement, nous vous prions de nous excuser pour ce désagrément.\\
+\end{tiny}
+Voici l'output de ce code qui resoud un sudoku.
+\begin{center}
+\includegraphics[scale=.7]{sudoku.png}
+\end{center}
+Si nous devons nous intéresser au pseudo code de cette algorithme, nous nous interesserons seulement a la partie résolution, et non aux parties facultatives au fonctionnement du programme, tel que l'affichage, la grille de Sudoku qui reste la même, ...
+\newpage
+\begin{lstlisting}[language=python, frame=bt, title= Pseudo code de résolution de Sudoku]
+Fonction possible(row, column, number, grid) :
+	Pour i allant de 0 à 9 avec un pas de 1 :
+		Si grid(ligne = row et colonne = i) égale a number : 
+			Retourner False
+		Fin Si
+	Fin Pour
+	
+	Pour i allant de 0 à 9 avec un pas de 1 :
+		Si grid(ligne = i et colonne = column) égale a number : 
+			Retourner False
+		Fin Si
+	Fin Pour
+	x0 = (Reste de la division euclidienne de colonne par 3 ) * 3 
+	y0 = (Reste de la division euclidienne de ligne par 3 ) * 3 
+	
+	Pour i allant de 0 à 3 avec un pas de 1 :
+		Pour j allant de 0 à 3 avec un pas de 1 :
+			Si grid(ligne = y0 + i et colonne = x0 + i) égale a number : 
+				Retourner False
+			Fin Si
+		Fin Pour
+	Fin Pour
+	
+	Retourner True
+Fin Fonction
+
+Fonction solve(grid):
+	Pour row allant de 0 à 9 avec un pas de 1 : 
+		Pour column allant de 0 à 9 avec un pas de 1 : 
+			Si grid(ligne = row et colonne = column) == 0:
+				Pour number allant de 1 à 10 avec un pas de 1:
+					Si possible(row, column, number, grid) retourne True :
+						grid(ligne = row et colonne  = number) = number
+						solve(grid)
+					Fin Si
+				Fin Pour
+				grid(ligne = row et colonne  = number) = 0
+				Retourner grid
+			Fin Si
+		Fin Pour
+	Fin Pour
+	Afficher grid
+Fin Fonction
+
+Appeler solve(grid)
+\end{lstlisting}
+\newpage
+\subsubsection*{Le backtracking en général}
+Ainsi, si l'on veut écrire un algorithme en pseudo-code plus généraliste sur le backtracking, nous pourrions vous proposer celui ci : 
+\begin{lstlisting}[language=python, frame=bt, title= Pseudo code généraliste du backtracking]
+n = variable quelconque 
+
+Fonction validité_de_la_variable(n):
+	Si n = Valide :
+		Retourner Vrai
+	Sinon :
+		Retourner Faux
+		
+Fonction backtracking(n):
+	Pour i allant de x à y avec un pas de w:
+		Si validité_de_la_variable(i) est Vraie :
+			n = i
+			backtracking(n)
+		Fin Si
+	Fin Pour
+	n = 0
+	Retourner n
+	Afficher n
+Fin Fonction
+
+Appeler bactracking(n)					
+\end{lstlisting}
+\subsubsection*{Conclusion}
+Nous avons donc pu voir différents exemples dans la vraie vie ou dans le domaine des mathématiques de la récursivité. A partir de la nous avons défini la récursivité dans l?informatique, qui a été explicité grâce à plusieurs exemples et nous l?avons comparé à une méthode plus simple dites par itérativité. Enfin nous avons étudié une application de la récursivité dans l?informatique, via l?exemple du backtracking.
+\includepdf[pages={1}]{enonce.pdf}
+
+$8\int_{a}^b f(x)dx 3$
+
+\end{document}
